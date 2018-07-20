@@ -27,8 +27,8 @@ Encore
   .setOutputPath('dist/')
   // the public path used by the web server to access the previous directory
   .setPublicPath('/dist')
-  .cleanupOutputBeforeBuild()
-  .enableSourceMaps(!Encore.isProduction())
+  // .cleanupOutputBeforeBuild()
+  // .enableSourceMaps(!Encore.isProduction())
   // uncomment to create hashed filenames (e.g. app.abc123.css)
   // .enableVersioning(Encore.isProduction())
   // uncomment if you use Sass/SCSS files
@@ -51,7 +51,7 @@ Encore
 //////////////////
 // Encore entry //
 //////////////////
-Encore.addStyleEntry('metronic-4-color' + minExt, './src/_metronic-4-color.scss');
+Encore.addStyleEntry('metronic-4-color' + minExt, './src/_main.scss');
 
 ///////////////////////////////////
 // add custom production plugins //
