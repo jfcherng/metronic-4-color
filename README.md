@@ -28,4 +28,6 @@ npm build-full
 
 # Colors
 
+http://keenthemes.com/preview/metronic/theme/admin_1/ui_colors.html
+
 <img src="https://raw.githubusercontent.com/jfcherng/metronic-4-color/gh-pages/images/colors.png">
