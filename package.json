@@ -1,0 +1,36 @@
+{
+  "name": "metronic-4-color",
+  "version": "1.0.0",
+  "description": "CSS to use colors defined in Metronic 4.",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "~0.20",
+    "node-sass": "^4.9.2",
+    "optimize-css-assets-webpack-plugin": "3.x",
+    "postcss-loader": "^2.1.6",
+    "postcss-preset-env": "^5.2.1",
+    "sass-loader": "^7.0.3"
+  },
+  "scripts": {
+    "build": "encore production",
+    "build-full": "encore dev && encore production",
+    "dev": "encore dev",
+    "dev-server": "encore dev-server",
+    "watch": "encore dev --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfcherng/metronic-4-color.git"
+  },
+  "keywords": [
+    "color",
+    "metronic"
+  ],
+  "author": "Jack Cherng <jfcherng@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jfcherng/metronic-4-color/issues"
+  },
+  "homepage": "https://github.com/jfcherng/metronic-4-color#readme"
+}
