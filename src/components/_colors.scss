@@ -7,10 +7,6 @@
     background: rgba(map-get($colors, base), 0.8) !important;
   }
 
-  .bg-hover-#{$name}:hover {
-    background: map-get($colors, base) !important;
-  }
-
   .font-#{$name} {
     color: map-get($colors, base) !important;
   }
@@ -42,6 +38,18 @@
   /////////////////////
   // pseudo elements //
   /////////////////////
+
+  .bg-hover-#{$name}:hover {
+    background: map-get($colors, base) !important;
+  }
+
+  .font-hover-#{$name}:hover {
+    background: map-get($colors, base) !important;
+  }
+
+  .border-hover-#{$name}:hover {
+    border-color: map-get($colors, base) !important;
+  }
 
   .bg-before-#{$name}:before,
   .bg-after-#{$name}:after {
