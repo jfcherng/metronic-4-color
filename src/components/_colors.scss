@@ -3,10 +3,6 @@
     background: map-get($colors, base) !important;
   }
 
-  .bg-#{$name}-opacity {
-    background: rgba(map-get($colors, base), 0.8) !important;
-  }
-
   .font-#{$name} {
     color: map-get($colors, base) !important;
   }
