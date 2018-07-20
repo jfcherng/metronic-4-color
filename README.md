@@ -24,3 +24,8 @@ yarn build-full
 ```bash
 npm build-full
 ```
+
+
+# Colors
+
+<img src="https://raw.githubusercontent.com/jfcherng/metronic-4-color/gh-pages/images/colors.png">
