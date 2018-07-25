@@ -2,8 +2,7 @@
   "name": "metronic-4-color",
   "version": "1.0.3",
   "description": "CSS to use colors defined in Metronic 4.",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@symfony/webpack-encore": "~0.20",
     "node-sass": "^4.9.2",
