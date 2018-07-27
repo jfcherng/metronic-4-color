@@ -22,7 +22,7 @@ yarn build-full
 ```
 
 ```bash
-npm build-full
+npm run build-full
 ```
 
 
