@@ -1,22 +1,8 @@
+@import '../variables/_colors';
+
 @each $name, $colors in $component-colors {
   $base-color: map-get($colors, base);
   $font-color: map-get($colors, font);
-
-  .bg-#{$name} {
-    background: $base-color !important;
-  }
-
-  .font-#{$name} {
-    color: $base-color !important;
-  }
-
-  .bg-font-#{$name} {
-    color: $font-color !important;
-  }
-
-  .border-#{$name} {
-    border-color: $base-color !important;
-  }
 
   .border-top-#{$name} {
     border-top-color: $base-color !important;
@@ -37,28 +23,6 @@
   /////////////////////
   // pseudo elements //
   /////////////////////
-
-  .bg-hover-#{$name}:hover {
-    background: $base-color !important;
-  }
-
-  .font-hover-#{$name}:hover {
-    background: $base-color !important;
-  }
-
-  .border-hover-#{$name}:hover {
-    border-color: $base-color !important;
-  }
-
-  .bg-before-#{$name}:before,
-  .bg-after-#{$name}:after {
-    background: $base-color !important;
-  }
-
-  .border-before-#{$name}:before,
-  .border-after-#{$name}:after {
-    border-color: $base-color !important;
-  }
 
   .border-top-before-#{$name}:before,
   .border-top-after-#{$name}:after {

@@ -51,7 +51,9 @@ Encore
 //////////////////
 // Encore entry //
 //////////////////
-Encore.addStyleEntry('metronic-4-color' + minExt, './src/_main.scss');
+Encore
+  .addStyleEntry('metronic-4-color' + minExt, './src/components/colors.scss')
+  .addStyleEntry('metronic-4-color-single-border' + minExt, './src/components/colors-single-border.scss');
 
 ///////////////////////////////////
 // add custom production plugins //
