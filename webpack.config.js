@@ -11,49 +11,61 @@ const util = require('util');
 //////////////////
 // node modules //
 //////////////////
+const argv = require('yargs').argv;
 const Encore = require('@symfony/webpack-encore');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 ///////////////
 // variables //
 ///////////////
+const baseOutputPath = Encore.isProduction() ? 'dist' : 'dev';
 const minExt = Encore.isProduction() ? '.min' : '';
+const outputPath = argv.outputPath !== undefined ? argv.outputPath : `${baseOutputPath}/`;
+const publicPath = argv.publicPath !== undefined ? argv.publicPath : `/${baseOutputPath}`;
+let manifestConfig = { sort: (file1, file2) => file1.name.localeCompare(file2.name) };
 
 ////////////////
 // Encore env //
 ////////////////
 Encore
   // the project directory where compiled assets will be stored
-  .setOutputPath('dist/')
+  .setOutputPath(outputPath)
   // the public path used by the web server to access the previous directory
-  .setPublicPath('/dist')
+  .setPublicPath(publicPath)
   // .cleanupOutputBeforeBuild()
   // .enableSourceMaps(!Encore.isProduction())
   // uncomment to create hashed filenames (e.g. app.abc123.css)
   // .enableVersioning(Encore.isProduction())
   // uncomment if you use Sass/SCSS files
-  .enableSassLoader((options) => {
+  .enableSassLoader((options) => Object.assign(options, {
     // https://github.com/sass/node-sass#options
-    Object.assign(options, {
-      includePaths: [
-        path.resolve(__dirname, './node_modules/compass-mixins/lib'),
-      ],
-    });
+    includePaths: [
+      path.resolve(__dirname, 'node_modules/compass-mixins/lib'),
+    ],
+  }))
+  .enablePostCssLoader((options) => Object.assign(options, {
+    config: {
+      path: path.resolve(__dirname, 'postcss.config.js'),
+    },
+  }))
+  .configureFilenames({
+    js: `[name]${minExt}.js`,
+    css: `[name]${minExt}.css`,
+    fonts: 'font/[name].[ext]',
+    images: 'img/[name].[ext]',
   })
-  .enablePostCssLoader((options) => {
-    Object.assign(options, {
-      config: {
-        path: path.resolve(__dirname, './postcss.config.js'),
-      },
-    });
+  .configureManifestPlugin((options) => Object.assign({}, options, manifestConfig))
+  .addAliases({
+    // use '~' to represent the assets root directory in require()
+    '~': path.resolve(__dirname, 'src'),
   });
 
 //////////////////
 // Encore entry //
 //////////////////
 Encore
-  .addStyleEntry('metronic-4-color' + minExt, './src/components/colors.scss')
-  .addStyleEntry('metronic-4-color-single-border' + minExt, './src/components/colors-single-border.scss');
+  .addStyleEntry('metronic-4-color', '~/components/colors.scss')
+  .addStyleEntry('metronic-4-color-single-border', '~/components/colors-single-border.scss');
 
 ///////////////////////////////////
 // add custom production plugins //
@@ -75,11 +87,11 @@ if (Encore.isProduction()) {
 ////////////////////////////////////////
 // generate the actual Webpack config //
 ////////////////////////////////////////
-const config = Encore.getWebpackConfig();
+const webpackConfig = Encore.getWebpackConfig();
 
-///////////////////////////
-// print out full config //
-///////////////////////////
-console.log(util.inspect(config, false, null));
+///////////////////////////////////
+// print out full webpack config //
+///////////////////////////////////
+console.log(util.inspect(webpackConfig, false, null));
 
-module.exports = config;
+module.exports = webpackConfig;
