@@ -4,12 +4,13 @@
   "description": "CSS to use colors defined in Metronic 4.",
   "dependencies": {},
   "devDependencies": {
-    "@symfony/webpack-encore": "~0.20",
+    "@symfony/webpack-encore": "^0.21",
     "node-sass": "^4.9.2",
-    "optimize-css-assets-webpack-plugin": "3.x",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.0.0",
-    "sass-loader": "^7.0.3"
+    "sass-loader": "^7.0.3",
+    "webpack-notifier": "^1.6.0"
   },
   "scripts": {
     "build": "encore production",
@@ -31,5 +32,6 @@
   "bugs": {
     "url": "https://github.com/jfcherng/metronic-4-color/issues"
   },
-  "homepage": "https://github.com/jfcherng/metronic-4-color#readme"
+  "homepage": "https://github.com/jfcherng/metronic-4-color#readme",
+  "browserslist": "> 1%"
 }

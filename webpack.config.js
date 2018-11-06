@@ -22,7 +22,11 @@ const baseOutputPath = Encore.isProduction() ? 'dist' : 'dev';
 const minExt = Encore.isProduction() ? '.min' : '';
 const outputPath = argv.outputPath !== undefined ? argv.outputPath : `${baseOutputPath}/`;
 const publicPath = argv.publicPath !== undefined ? argv.publicPath : `/${baseOutputPath}`;
-let manifestConfig = { sort: (file1, file2) => file1.name.localeCompare(file2.name) };
+
+let manifestConfig = {
+  // sort manifest.json by keys
+  sort: (file1, file2) => file1.name.localeCompare(file2.name)
+};
 
 ////////////////
 // Encore env //
@@ -33,6 +37,7 @@ Encore
   // the public path used by the web server to access the previous directory
   .setPublicPath(publicPath)
   // .cleanupOutputBeforeBuild()
+  .enableBuildNotifications()
   // .enableSourceMaps(!Encore.isProduction())
   // uncomment to create hashed filenames (e.g. app.abc123.css)
   // .enableVersioning(Encore.isProduction())
@@ -72,13 +77,15 @@ Encore
 ///////////////////////////////////
 if (Encore.isProduction()) {
   Encore
+    // @see: https://github.com/NMFR/optimize-css-assets-webpack-plugin
     .addPlugin(new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.(c|s[ac])ss$/g,
-      cssProcessorOptions: {
-        safe: true,
-        discardComments: {
-          removeAll: true,
-        },
+      cssProcessorPluginOptions: {
+        preset: ['default', {
+          discardComments: {
+            removeAll: true
+          }
+        }],
       },
       canPrint: true,
     }));
