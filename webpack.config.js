@@ -25,7 +25,7 @@ const publicPath = argv.publicPath !== undefined ? argv.publicPath : `/${baseOut
 
 let manifestConfig = {
   // sort manifest.json by keys
-  sort: (file1, file2) => file1.name.localeCompare(file2.name)
+  sort: (file1, file2) => file1.name.localeCompare(file2.name),
 };
 
 ////////////////
@@ -83,8 +83,8 @@ if (Encore.isProduction()) {
       cssProcessorPluginOptions: {
         preset: ['default', {
           discardComments: {
-            removeAll: true
-          }
+            removeAll: true,
+          },
         }],
       },
       canPrint: true,
