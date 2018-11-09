@@ -42,13 +42,13 @@ Encore
   // uncomment to create hashed filenames (e.g. app.abc123.css)
   // .enableVersioning(Encore.isProduction())
   // uncomment if you use Sass/SCSS files
-  .enableSassLoader((options) => Object.assign(options, {
+  .enableSassLoader((options) => Object.assign({}, options, {
     // https://github.com/sass/node-sass#options
     includePaths: [
       path.resolve(__dirname, 'node_modules/compass-mixins/lib'),
     ],
   }))
-  .enablePostCssLoader((options) => Object.assign(options, {
+  .enablePostCssLoader((options) => Object.assign({}, options, {
     config: {
       path: path.resolve(__dirname, 'postcss.config.js'),
     },
@@ -61,16 +61,16 @@ Encore
   })
   .configureManifestPlugin((options) => Object.assign({}, options, manifestConfig))
   .addAliases({
-    // use '~' to represent the assets root directory in require()
-    '~': path.resolve(__dirname, 'src'),
+    // use '@src' to represent the src directory in require()
+    '@src': path.resolve(__dirname, 'src'),
   });
 
 //////////////////
 // Encore entry //
 //////////////////
 Encore
-  .addStyleEntry('metronic-4-color', '~/components/colors.scss')
-  .addStyleEntry('metronic-4-color-single-border', '~/components/colors-single-border.scss');
+  .addStyleEntry('metronic-4-color', '@src/components/colors.scss')
+  .addStyleEntry('metronic-4-color-single-border', '@src/components/colors-single-border.scss');
 
 ///////////////////////////////////
 // add custom production plugins //
@@ -79,7 +79,7 @@ if (Encore.isProduction()) {
   Encore
     // @see: https://github.com/NMFR/optimize-css-assets-webpack-plugin
     .addPlugin(new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.(c|s[ac])ss$/g,
+      assetNameRegExp: /\.(c|s[ac])ss$/,
       cssProcessorPluginOptions: {
         preset: ['default', {
           discardComments: {
