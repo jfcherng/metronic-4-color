@@ -1,1 +1,7 @@
 /node_modules/
+
+# build
+/dev/entrypoints.json
+/dev/manifest.json
+/dist/entrypoints.json
+/dist/manifest.json

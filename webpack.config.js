@@ -28,6 +28,11 @@ let manifestConfig = {
   sort: (file1, file2) => file1.name.localeCompare(file2.name),
 };
 
+/////////////////////////
+// prepare directories //
+/////////////////////////
+mkdirRecursiveSync(outputPath);
+
 ////////////////
 // Encore env //
 ////////////////
@@ -36,10 +41,11 @@ Encore
   .setOutputPath(outputPath)
   // the public path used by the web server to access the previous directory
   .setPublicPath(publicPath)
-  // .cleanupOutputBeforeBuild()
+  .cleanupOutputBeforeBuild()
+  .disableSingleRuntimeChunk()
   .enableSourceMaps(!Encore.isProduction())
   // uncomment to create hashed filenames (e.g. app.abc123.css)
-  // .enableVersioning(Encore.isProduction())
+  .enableVersioning(false)
   // uncomment if you use Sass/SCSS files
   .enableSassLoader((options) => Object.assign({}, options, {
     // https://github.com/sass/node-sass#options
@@ -101,3 +107,17 @@ const webpackConfig = Encore.getWebpackConfig();
 console.log(util.inspect(webpackConfig, false, null));
 
 module.exports = webpackConfig;
+
+///////////////
+// functions //
+///////////////
+function mkdirRecursiveSync(dir, mode = 0o777) {
+  try {
+    fs.mkdirSync(dir, mode);
+  } catch (e) {
+    if (e.code === 'ENOENT') {
+      mkdirRecursiveSync(path.dirname(dir), mode);
+      mkdirRecursiveSync(dir, mode);
+    }
+  }
+}
