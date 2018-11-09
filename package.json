@@ -5,6 +5,7 @@
   "dependencies": {},
   "devDependencies": {
     "@symfony/webpack-encore": "^0.21",
+    "eslint": "^5.8.0",
     "node-sass": "^4.9.2",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
@@ -17,6 +18,8 @@
     "build-full": "encore dev && encore production",
     "dev": "encore dev",
     "dev-server": "encore dev-server",
+    "fix": "eslint --fix ./*.js",
+    "lint": "eslint ./*.js",
     "watch": "encore dev --watch"
   },
   "repository": {

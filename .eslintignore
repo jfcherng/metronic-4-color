@@ -1,0 +1,7 @@
+/dev/
+/dist/
+/node_modules/
+
+# git worktree
+/br-*/
+/branch-*/
