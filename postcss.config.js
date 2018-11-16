@@ -2,13 +2,20 @@
 
 'use strict';
 
-const postcssPresetEnv = require('postcss-preset-env');
-
-module.exports = {
-  plugins: [
-    // https://github.com/csstools/postcss-preset-env
-    postcssPresetEnv({
-      autoprefixer: {},
-    }),
-  ],
-};
+module.exports = (ctx) => ({
+  parser: ctx.file.extname === '.sss' ? 'sugarss' : false,
+  plugins: ctx.webpack.mode === 'development' ? {
+    // dev mode plugins
+  } : {
+    // prod mode plugins
+    cssnano: {
+      preset: ['default', {
+        discardComments: {
+          removeAll: true,
+        },
+      }],
+    },
+    'postcss-import': {},
+    'postcss-preset-env': {},
+  },
+});

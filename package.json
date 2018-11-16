@@ -4,13 +4,15 @@
   "description": "CSS to use colors defined in Metronic 4.",
   "dependencies": {},
   "devDependencies": {
-    "@symfony/webpack-encore": "^0.21",
-    "eslint": "^5.8.0",
-    "node-sass": "^4.9.2",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "postcss-loader": "^3.0.0",
-    "postcss-preset-env": "^6.0.0",
-    "sass-loader": "^7.0.3"
+    "@symfony/webpack-encore": "^0.28",
+    "autoprefixer": "^9",
+    "eslint": "^6",
+    "node-sass": "^4",
+    "postcss-import": "^12",
+    "postcss-loader": "^3",
+    "postcss-preset-env": "^6",
+    "sass-loader": "^7",
+    "sugarss": "^2"
   },
   "scripts": {
     "build": "encore production",

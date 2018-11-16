@@ -13,7 +13,6 @@ const util = require('util');
 //////////////////
 const argv = require('yargs').argv;
 const Encore = require('@symfony/webpack-encore');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 ///////////////
 // variables //
@@ -52,10 +51,12 @@ Encore
     includePaths: [
       path.resolve(__dirname, 'node_modules/compass-mixins/lib'),
     ],
+    outputStyle: 'expanded',
   }))
   .enablePostCssLoader((options) => Object.assign({}, options, {
     config: {
-      path: path.resolve(__dirname, 'postcss.config.js'),
+      // the directory that contains postcss.config.js
+      path: path.resolve(__dirname),
     },
   }))
   .configureFilenames({
@@ -76,25 +77,6 @@ Encore
 Encore
   .addStyleEntry('metronic-4-color', '@src/components/colors.scss')
   .addStyleEntry('metronic-4-color-single-border', '@src/components/colors-single-border.scss');
-
-///////////////////////////////////
-// add custom production plugins //
-///////////////////////////////////
-if (Encore.isProduction()) {
-  Encore
-    // @see: https://github.com/NMFR/optimize-css-assets-webpack-plugin
-    .addPlugin(new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.(c|s[ac])ss$/,
-      cssProcessorPluginOptions: {
-        preset: ['default', {
-          discardComments: {
-            removeAll: true,
-          },
-        }],
-      },
-      canPrint: true,
-    }));
-}
 
 ////////////////////////////////////////
 // generate the actual Webpack config //
